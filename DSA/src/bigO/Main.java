@@ -50,8 +50,8 @@ public class Main {
 
   public static void main(String[] args) {
     // printItems(10);
-    // doubleItems(10);
-    System.out.println(addItems(2));
+    doubleItems(10);
+    // System.out.println(addItems(2));
   }
 
 }

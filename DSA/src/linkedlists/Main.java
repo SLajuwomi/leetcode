@@ -8,7 +8,12 @@ public class Main {
     myLinkedList.getHead();
     myLinkedList.getTail();
     myLinkedList.getLength();
+    myLinkedList.printList();
 
+    myLinkedList.append(3);
+    myLinkedList.getHead();
+    myLinkedList.getTail();
+    myLinkedList.getLength();
     myLinkedList.printList();
   }
 }

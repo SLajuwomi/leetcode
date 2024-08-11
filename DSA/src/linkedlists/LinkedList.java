@@ -93,4 +93,17 @@ public class LinkedList {
 
   }
 
+  public Node removeFirst() {
+    if (length == 0)
+      return null;
+    Node temp = head;
+    head = tail;
+    temp.next = null;
+    length--;
+    if (length == 0) {
+      tail = null;
+    }
+    return temp;
+  }
+
 }

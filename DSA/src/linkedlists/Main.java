@@ -3,11 +3,10 @@ package DSA.src.linkedlists;
 public class Main {
   public static void main(String[] args) {
 
-    LinkedList myLinkedList = new LinkedList(11);
-    myLinkedList.append(23);
-    myLinkedList.append(7);
+    LinkedList myLinkedList = new LinkedList(0);
+    myLinkedList.append(2);
 
-    System.out.println(myLinkedList.set(5, 12));
+    myLinkedList.insert(1, 1);
 
     myLinkedList.printList();
 

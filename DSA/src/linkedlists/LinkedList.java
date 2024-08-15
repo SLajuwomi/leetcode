@@ -171,4 +171,20 @@ public class LinkedList {
       temp = after;
     }
   }
+
+  public Node findMiddleNode() {
+    if (length == 0)
+      return null;
+    if (length == 1)
+      return head;
+    Node fast = head;
+    Node slow = head;
+    while (fast != null && fast.next != null) {
+      slow = slow.next;
+      fast = fast.next.next;
+    }
+    if (length / 2 == 0)
+      return slow.next;
+    return slow;
+  }
 }

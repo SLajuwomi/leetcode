@@ -219,4 +219,32 @@ public class LinkedList {
     return slow;
   }
 
+  public void partitionList(int x) {
+    Node lesser = new Node(0);
+    Node greater = new Node(0);
+    Node lesserTail = lesser;
+    Node greaterTail = greater;
+
+    Node temp = head;
+
+    while (temp != null) {
+      if (temp.value < x) {
+        lesserTail.next = temp;
+        lesserTail = lesserTail.next;
+      } else {
+        greaterTail.next = temp;
+        greaterTail = greaterTail.next;
+      }
+
+      temp = temp.next;
+    }
+
+    lesserTail.next = greater.next;
+    greaterTail.next = null;
+
+    head = lesser.next;
+
+    return;
+  }
+
 }

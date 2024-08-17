@@ -261,6 +261,7 @@ public class LinkedList {
         // When duplicate is found
         if (point1.value == point2.value) {
           prev.next = point2.next;
+          length--;
         } else {
           // move previous pointer only if no duplicate found
           prev = point2;
@@ -269,5 +270,15 @@ public class LinkedList {
       }
       point1 = point1.next;
     }
+  }
+
+  public int binaryToDecimal() {
+    Node current = head;
+    int num = 0;
+    while (current != null) {
+      num = num * 2 + current.value;
+      current = current.next;
+    }
+    return num;
   }
 }

@@ -247,4 +247,27 @@ public class LinkedList {
     return;
   }
 
+  public void removeDuplicates() {
+    if (head == null)
+      return;
+    // Node current = head;
+    Node point1 = head;
+
+    // check if pointers are at end of list to avoid Null Pointer Exception
+    while (point1 != null) {
+      Node prev = point1;
+      Node point2 = point1.next;
+      while (point2 != null) {
+        // When duplicate is found
+        if (point1.value == point2.value) {
+          prev.next = point2.next;
+        } else {
+          // move previous pointer only if no duplicate found
+          prev = point2;
+        }
+        point2 = point2.next;
+      }
+      point1 = point1.next;
+    }
+  }
 }

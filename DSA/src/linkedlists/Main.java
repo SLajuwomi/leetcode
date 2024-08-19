@@ -11,7 +11,7 @@ public class Main {
     // myLinkedList.append(2);
     // myLinkedList.append(5);
 
-    myLinkedList.reverseBetween(0, 4);
+    myLinkedList.reverseBetween(1, 5);
 
     myLinkedList.printList();
 

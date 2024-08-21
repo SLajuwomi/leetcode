@@ -307,4 +307,19 @@ public class LinkedList {
     head = dummy.next;
     return;
   }
+
+  // Much faster and simpler solution
+  public Node deleteDuplicates(Node head) {
+    Node current = head;
+
+    while (current != null && current.next != null) {
+      if (current.value == current.next.value) {
+        current.next = current.next.next;
+      } else {
+        current = current.next;
+      }
+    }
+
+    return head;
+  }
 }

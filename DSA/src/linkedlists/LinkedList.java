@@ -322,4 +322,30 @@ public class LinkedList {
 
     return head;
   }
+
+  // Neetcode solution
+  public Node reverseBetween(Node head, int left, int right) {
+    Node dummy = new Node(0);
+    dummy.next = head;
+    Node leftPrev = dummy;
+    Node cur = head;
+
+    for (int i = 0; i < left - 1; i++) {
+      leftPrev = leftPrev.next;
+      cur = cur.next;
+    }
+
+    Node prev = null;
+    for (int i = 0; i < right - left + 1; i++) {
+      Node temp = cur.next;
+      cur.next = prev;
+      prev = cur;
+      cur = temp;
+    }
+
+    leftPrev.next.next = cur;
+    leftPrev.next = prev;
+
+    return dummy.next;
+  }
 }

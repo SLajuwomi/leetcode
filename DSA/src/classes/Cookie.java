@@ -1,4 +1,4 @@
-package DSA.src.classes;
+
 
 public class Cookie {
   private String color;

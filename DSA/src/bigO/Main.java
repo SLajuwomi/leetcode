@@ -1,4 +1,3 @@
-package DSA.src.bigO;
 
 // Big O(n) -  As n grows, the number of operations grows - Proportional
 

@@ -1,351 +1,351 @@
-package DSA.src.linkedlists;
+
 
 public class LinkedList {
-  private Node head;
-  private Node tail;
-  private int length;
+   private Node head;
+   private Node tail;
+   private int length;
 
-  class Node {
-    int value;
-    Node next;
+   class Node {
+      int value;
+      Node next;
 
-    Node(int value) {
-      this.value = value;
-    }
-  }
+      Node(int value) {
+         this.value = value;
+      }
+   }
 
-  public LinkedList(int value) {
+   public LinkedList(int value) {
 
-    Node newNode = new Node(value);
-    head = newNode;
-    tail = newNode;
-    length = 1;
-  }
-
-  public void printList() {
-    Node temp = head;
-    while (temp != null) {
-      System.out.println(temp.value);
-      temp = temp.next;
-    }
-  }
-
-  public void getHead() {
-    System.out.println("Head: " + head.value);
-  }
-
-  public void getTail() {
-    System.out.println("Tail: " + tail.value);
-  }
-
-  public void getLength() {
-    System.out.println("Length: " + length);
-  }
-
-  public void append(int value) {
-    Node newNode = new Node(value);
-    if (head != null) {
-      tail.next = newNode;
-      tail = newNode;
-
-    } else {
+      Node newNode = new Node(value);
       head = newNode;
       tail = newNode;
-    }
-    length++;
-  }
+      length = 1;
+   }
 
-  public Node removeLast() {
-    if (length == 0)
-      return null;
+   public void printList() {
+      Node temp = head;
+      while (temp != null) {
+         System.out.println(temp.value);
+         temp = temp.next;
+      }
+   }
 
-    Node temp = head;
-    Node pre = head;
+   public void getHead() {
+      System.out.println("Head: " + head.value);
+   }
 
-    while (temp.next != null) {
-      pre = temp;
-      temp = temp.next;
-    }
+   public void getTail() {
+      System.out.println("Tail: " + tail.value);
+   }
 
-    tail = pre;
-    tail.next = null;
-    length--;
+   public void getLength() {
+      System.out.println("Length: " + length);
+   }
 
-    if (length == 0) {
-      head = null;
-      tail = null;
-    }
+   public void append(int value) {
+      Node newNode = new Node(value);
+      if (head != null) {
+         tail.next = newNode;
+         tail = newNode;
 
-    return temp;
-  }
+      } else {
+         head = newNode;
+         tail = newNode;
+      }
+      length++;
+   }
 
-  public void prepend(int value) {
-    Node newNode = new Node(value);
+   public Node removeLast() {
+      if (length == 0)
+         return null;
 
-    if (length == 0) {
-      head = newNode;
-      tail = newNode;
-    } else {
-      newNode.next = head;
-      head = newNode;
-    }
-    length++;
+      Node temp = head;
+      Node pre = head;
 
-  }
+      while (temp.next != null) {
+         pre = temp;
+         temp = temp.next;
+      }
 
-  public Node removeFirst() {
-    if (length == 0)
-      return null;
-    Node temp = head;
-    head = tail;
-    temp.next = null;
-    length--;
-    if (length == 0) {
-      tail = null;
-    }
-    return temp;
-  }
+      tail = pre;
+      tail.next = null;
+      length--;
 
-  public Node get(int index) {
-    if (index < 0 || index >= length) {
-      return null;
-    }
+      if (length == 0) {
+         head = null;
+         tail = null;
+      }
 
-    Node temp = head;
-    for (int i = 0; i < index; i++) {
-      temp = temp.next;
-    }
-    return temp;
-  }
+      return temp;
+   }
 
-  public boolean set(int index, int value) {
-    Node temp = get(index);
-    if (temp != null) {
-      temp.value = value;
-      return true;
-    }
-    return false;
-  }
+   public void prepend(int value) {
+      Node newNode = new Node(value);
 
-  public boolean insert(int index, int value) {
-    if (index < 0 || index > length)
+      if (length == 0) {
+         head = newNode;
+         tail = newNode;
+      } else {
+         newNode.next = head;
+         head = newNode;
+      }
+      length++;
+
+   }
+
+   public Node removeFirst() {
+      if (length == 0)
+         return null;
+      Node temp = head;
+      head = tail;
+      temp.next = null;
+      length--;
+      if (length == 0) {
+         tail = null;
+      }
+      return temp;
+   }
+
+   public Node get(int index) {
+      if (index < 0 || index >= length) {
+         return null;
+      }
+
+      Node temp = head;
+      for (int i = 0; i < index; i++) {
+         temp = temp.next;
+      }
+      return temp;
+   }
+
+   public boolean set(int index, int value) {
+      Node temp = get(index);
+      if (temp != null) {
+         temp.value = value;
+         return true;
+      }
       return false;
-    if (index == 0)
-      prepend(value);
-    if (index == length)
-      append(value);
-    Node newNode = new Node(value);
-    Node temp = get(index - 1);
-    newNode.next = temp.next;
-    temp.next = newNode;
-    length++;
-    return true;
-  }
+   }
 
-  public Node remove(int index) {
-    if (index < 0 || index >= length)
-      return null;
-    if (index == 0)
-      removeFirst();
-    if (index == length - 1)
-      removeLast();
+   public boolean insert(int index, int value) {
+      if (index < 0 || index > length)
+         return false;
+      if (index == 0)
+         prepend(value);
+      if (index == length)
+         append(value);
+      Node newNode = new Node(value);
+      Node temp = get(index - 1);
+      newNode.next = temp.next;
+      temp.next = newNode;
+      length++;
+      return true;
+   }
 
-    Node prev = get(index - 1);
-    Node temp = prev.next;
-    prev.next = temp.next;
-    temp.next = null;
-    length--;
-    return temp;
-  }
+   public Node remove(int index) {
+      if (index < 0 || index >= length)
+         return null;
+      if (index == 0)
+         removeFirst();
+      if (index == length - 1)
+         removeLast();
 
-  public void reverse() {
-    Node temp = head;
-    head = tail;
-    tail = temp;
-    Node before = null;
-    Node after = temp.next;
-    for (int i = 0; i < length; i++) {
-      after = temp.next;
-      temp.next = before;
-      before = temp;
-      temp = after;
-    }
-  }
+      Node prev = get(index - 1);
+      Node temp = prev.next;
+      prev.next = temp.next;
+      temp.next = null;
+      length--;
+      return temp;
+   }
 
-  public Node findMiddleNode() {
-    if (length == 0)
-      return null;
-    if (length == 1)
+   public void reverse() {
+      Node temp = head;
+      head = tail;
+      tail = temp;
+      Node before = null;
+      Node after = temp.next;
+      for (int i = 0; i < length; i++) {
+         after = temp.next;
+         temp.next = before;
+         before = temp;
+         temp = after;
+      }
+   }
+
+   public Node findMiddleNode() {
+      if (length == 0)
+         return null;
+      if (length == 1)
+         return head;
+      Node fast = head;
+      Node slow = head;
+      while (fast != null && fast.next != null) {
+         slow = slow.next;
+         fast = fast.next.next;
+      }
+      if (length / 2 == 0)
+         return slow.next;
+      return slow;
+   }
+
+   public boolean hasLoop() {
+      Node slow = head;
+      Node fast = head;
+      while (fast != null && fast.next != null) {
+         slow = slow.next;
+         fast = fast.next.next;
+         if (fast == slow)
+            return true;
+      }
+
+      return false;
+   }
+
+   public Node findKthFromEnd(int k) {
+      if (length < k)
+         return null;
+      Node slow = head;
+      Node fast = head;
+      for (int i = 0; i < k; i++) {
+         if (fast == null)
+            return null;
+         fast = fast.next;
+      }
+      while (fast != null) {
+         slow = slow.next;
+         fast = fast.next;
+
+      }
+      return slow;
+   }
+
+   public void partitionList(int x) {
+      Node lesser = new Node(0);
+      Node greater = new Node(0);
+      Node lesserTail = lesser;
+      Node greaterTail = greater;
+
+      Node temp = head;
+
+      while (temp != null) {
+         if (temp.value < x) {
+            lesserTail.next = temp;
+            lesserTail = lesserTail.next;
+         } else {
+            greaterTail.next = temp;
+            greaterTail = greaterTail.next;
+         }
+
+         temp = temp.next;
+      }
+
+      lesserTail.next = greater.next;
+      greaterTail.next = null;
+
+      head = lesser.next;
+
+      return;
+   }
+
+   public void removeDuplicates() {
+      if (head == null)
+         return;
+      // Node current = head;
+      Node point1 = head;
+
+      // check if pointers are at end of list to avoid Null Pointer Exception
+      while (point1 != null) {
+         Node prev = point1;
+         Node point2 = point1.next;
+         while (point2 != null) {
+            // When duplicate is found
+            if (point1.value == point2.value) {
+               prev.next = point2.next;
+               length--;
+            } else {
+               // move previous pointer only if no duplicate found
+               prev = point2;
+            }
+            point2 = point2.next;
+         }
+         point1 = point1.next;
+      }
+   }
+
+   public int binaryToDecimal() {
+      Node current = head;
+      int num = 0;
+      while (current != null) {
+         num = num * 2 + current.value;
+         current = current.next;
+      }
+      return num;
+   }
+
+   public void reverseBetween(int left, int right) {
+
+      if (head == null || left == right) {
+         return;
+      }
+      Node dummy = new Node(0);
+      dummy.next = head;
+      Node prev = dummy;
+
+      for (int i = 0; i < left - 1; i++) {
+         prev = prev.next;
+      }
+
+      Node current = prev.next;
+
+      for (int i = 0; i < right - left; i++) {
+         Node temp = current.next;
+         current.next = temp.next;
+         temp.next = prev.next;
+         prev.next = temp;
+      }
+
+      head = dummy.next;
+      return;
+   }
+
+   // Much faster and simpler solution
+   public Node deleteDuplicates(Node head) {
+      Node current = head;
+
+      while (current != null && current.next != null) {
+         if (current.value == current.next.value) {
+            current.next = current.next.next;
+         } else {
+            current = current.next;
+         }
+      }
+
       return head;
-    Node fast = head;
-    Node slow = head;
-    while (fast != null && fast.next != null) {
-      slow = slow.next;
-      fast = fast.next.next;
-    }
-    if (length / 2 == 0)
-      return slow.next;
-    return slow;
-  }
+   }
 
-  public boolean hasLoop() {
-    Node slow = head;
-    Node fast = head;
-    while (fast != null && fast.next != null) {
-      slow = slow.next;
-      fast = fast.next.next;
-      if (fast == slow)
-        return true;
-    }
+   // Neetcode solution
+   public Node reverseBetween(Node head, int left, int right) {
+      Node dummy = new Node(0);
+      dummy.next = head;
+      Node leftPrev = dummy;
+      Node cur = head;
 
-    return false;
-  }
-
-  public Node findKthFromEnd(int k) {
-    if (length < k)
-      return null;
-    Node slow = head;
-    Node fast = head;
-    for (int i = 0; i < k; i++) {
-      if (fast == null)
-        return null;
-      fast = fast.next;
-    }
-    while (fast != null) {
-      slow = slow.next;
-      fast = fast.next;
-
-    }
-    return slow;
-  }
-
-  public void partitionList(int x) {
-    Node lesser = new Node(0);
-    Node greater = new Node(0);
-    Node lesserTail = lesser;
-    Node greaterTail = greater;
-
-    Node temp = head;
-
-    while (temp != null) {
-      if (temp.value < x) {
-        lesserTail.next = temp;
-        lesserTail = lesserTail.next;
-      } else {
-        greaterTail.next = temp;
-        greaterTail = greaterTail.next;
+      for (int i = 0; i < left - 1; i++) {
+         leftPrev = leftPrev.next;
+         cur = cur.next;
       }
 
-      temp = temp.next;
-    }
-
-    lesserTail.next = greater.next;
-    greaterTail.next = null;
-
-    head = lesser.next;
-
-    return;
-  }
-
-  public void removeDuplicates() {
-    if (head == null)
-      return;
-    // Node current = head;
-    Node point1 = head;
-
-    // check if pointers are at end of list to avoid Null Pointer Exception
-    while (point1 != null) {
-      Node prev = point1;
-      Node point2 = point1.next;
-      while (point2 != null) {
-        // When duplicate is found
-        if (point1.value == point2.value) {
-          prev.next = point2.next;
-          length--;
-        } else {
-          // move previous pointer only if no duplicate found
-          prev = point2;
-        }
-        point2 = point2.next;
+      Node prev = null;
+      for (int i = 0; i < right - left + 1; i++) {
+         Node temp = cur.next;
+         cur.next = prev;
+         prev = cur;
+         cur = temp;
       }
-      point1 = point1.next;
-    }
-  }
 
-  public int binaryToDecimal() {
-    Node current = head;
-    int num = 0;
-    while (current != null) {
-      num = num * 2 + current.value;
-      current = current.next;
-    }
-    return num;
-  }
+      leftPrev.next.next = cur;
+      leftPrev.next = prev;
 
-  public void reverseBetween(int left, int right) {
-
-    if (head == null || left == right) {
-      return;
-    }
-    Node dummy = new Node(0);
-    dummy.next = head;
-    Node prev = dummy;
-
-    for (int i = 0; i < left - 1; i++) {
-      prev = prev.next;
-    }
-
-    Node current = prev.next;
-
-    for (int i = 0; i < right - left; i++) {
-      Node temp = current.next;
-      current.next = temp.next;
-      temp.next = prev.next;
-      prev.next = temp;
-    }
-
-    head = dummy.next;
-    return;
-  }
-
-  // Much faster and simpler solution
-  public Node deleteDuplicates(Node head) {
-    Node current = head;
-
-    while (current != null && current.next != null) {
-      if (current.value == current.next.value) {
-        current.next = current.next.next;
-      } else {
-        current = current.next;
-      }
-    }
-
-    return head;
-  }
-
-  // Neetcode solution
-  public Node reverseBetween(Node head, int left, int right) {
-    Node dummy = new Node(0);
-    dummy.next = head;
-    Node leftPrev = dummy;
-    Node cur = head;
-
-    for (int i = 0; i < left - 1; i++) {
-      leftPrev = leftPrev.next;
-      cur = cur.next;
-    }
-
-    Node prev = null;
-    for (int i = 0; i < right - left + 1; i++) {
-      Node temp = cur.next;
-      cur.next = prev;
-      prev = cur;
-      cur = temp;
-    }
-
-    leftPrev.next.next = cur;
-    leftPrev.next = prev;
-
-    return dummy.next;
-  }
+      return dummy.next;
+   }
 }
